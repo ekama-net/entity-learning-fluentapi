@@ -7,7 +7,7 @@ namespace February16
     {
         public static void Main(string[] args)
         {
-            #region не хотело работать с миграцией, скорее всего потому что сразу делал через конструктор без параметров как ниже, затем мигрировал)
+            #region 
             //var builder = new ConfigurationBuilder(); 
             //builder.SetBasePath(@"D:\other\ProjNew\February16 [FluentApi]\February16"); //установка пути к текущему каталогу
             //builder.AddJsonFile("appsettings.json"); //получаем конфигурацию из файла

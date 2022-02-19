@@ -6,8 +6,9 @@ namespace February16
     {
         public DbSet<Delivery> Deliverys { get; set; } = null!; 
         public DbSet<Food> Foods { get; set; } = null!;
+        public DbSet<RunningShoes> RunningShoes { get; set; } = null!;
         public DbSet<Shoes> Shoes { get; set; } = null!;
-        
+
         //public MyContext(DbContextOptions<MyContext> options) :base(options)
         //{
         //    //Database.EnsureDeleted();
@@ -56,6 +57,7 @@ namespace February16
             modelBuilder.Entity<Shoes>().HasCheckConstraint("ShoesCount", "ShoesCount > 0 AND ShoesCount < 100");
             modelBuilder.Entity<Shoes>().Property(f => f.HasDelivery).HasDefaultValue(2); //not working, because HasDelivery nullable!
 
+            modelBuilder.Entity<RunningShoes>().Property(f => f.SoleType).HasMaxLength(30).IsRequired();
             //seeding
             modelBuilder.Entity<Food>().HasData(
                 new Food { Id = 1, FoodName = "Bread", FoodCount = 2, HasDelivery = 1 },
@@ -72,6 +74,11 @@ namespace February16
                 new Shoes { Id = 1, ShoesName = "Nike", ShoesCount = 1, HasDelivery = 1 },
                 new Shoes { Id = 2, ShoesName = "Saucony", ShoesCount = 3, HasDelivery = 1 },
                 new Shoes { Id = 3, ShoesName = "Adidas" }
+                );
+
+            modelBuilder.Entity<RunningShoes>().HasData(
+                new RunningShoes { Id = 5, ShoesName = "Puma", ShoesCount = 5, SoleType = "rubber" },
+                new RunningShoes { Id = 4, ShoesName = "Adidas", SoleType = "plastic" }
                 );
         }
 
